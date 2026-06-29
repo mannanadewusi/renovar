@@ -402,6 +402,65 @@ export function Home({ setCurrentView }: HomeProps) {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="py-section-padding px-6 md:px-margin-desktop max-w-container-max mx-auto">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
+            <span className="font-label-caps text-label-caps text-secondary block mb-4">GET IN TOUCH</span>
+            <h2 className="font-headline-md text-headline-md text-primary mb-8">Visit Our Sanctuary</h2>
+            
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-label-caps text-label-caps text-primary mb-2">Location</h3>
+                <p className="font-body-md text-on-surface-variant">
+                  2B Adenugba Street<br/>
+                  Oregun, Ikeja<br/>
+                  Lagos, Nigeria
+                </p>
+                <a 
+                  href="https://maps.app.goo.gl/WacaMMJdrtj8BZbi8" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 mt-3 font-label-caps text-xs text-secondary hover:text-primary transition-colors"
+                >
+                  Get Directions <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+
+              <div>
+                <h3 className="font-label-caps text-label-caps text-primary mb-2">Contact</h3>
+                <p className="font-body-md text-on-surface-variant mb-1">
+                  Phone: <a href="tel:09166416172" className="hover:text-primary transition-colors">0916 641 6172</a>
+                </p>
+                <p className="font-body-md text-on-surface-variant">
+                  Email: <a href="mailto:renovarhaven@gmail.com" className="hover:text-primary transition-colors">renovarhaven@gmail.com</a>
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-label-caps text-label-caps text-primary mb-2">Hours</h3>
+                <p className="font-body-md text-on-surface-variant">Open Daily</p>
+                <p className="font-body-md text-on-surface-variant">Closes at 6:00 PM</p>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: 0.2 }}
+            className="h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-sm border border-outline-variant/20 relative"
+          >
+            <iframe 
+              src="https://maps.google.com/maps?q=2B%20Adenugba%20Street,%20Oregun,%20Ikeja,%20Lagos&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              className="absolute inset-0 w-full h-full border-0" 
+              allowFullScreen={false} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Renovar Haven Map Location"
+            ></iframe>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary z-0">

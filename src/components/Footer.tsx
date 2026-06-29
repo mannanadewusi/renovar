@@ -1,39 +1,49 @@
 import React from 'react';
 
-export function Footer() {
+interface FooterProps {
+  setCurrentView: (view: string) => void;
+}
+
+export function Footer({ setCurrentView }: FooterProps) {
+  const handleNavClick = (id: string) => {
+    if (id === 'services') {
+      setCurrentView('services');
+    } else {
+      setCurrentView('home');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <footer className="w-full rounded-t-xl bg-surface-container-low pt-section-padding pb-8 mt-12">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto mb-16">
         <div className="col-span-1 md:col-span-2">
           <span className="font-headline-sm text-headline-sm text-primary mb-6 block">RENOVAR HAVEN</span>
-          <p className="font-body-md text-on-surface-variant opacity-70 mb-2">
-            2B Adenugba Street<br/>
-            Oregun, Ikeja<br/>
-            Lagos
+          <p className="font-body-md text-on-surface-variant opacity-70 max-w-sm">
+            A sanctuary of refined wellness in the heart of Lagos. Dedicated to the art of holistic well-being and restoring your natural balance.
           </p>
-          <a href="https://maps.app.goo.gl/WacaMMJdrtj8BZbi8" target="_blank" rel="noopener noreferrer" className="font-label-caps text-xs text-secondary hover:text-primary transition-colors mb-6 inline-block">
-            View on Google Maps
-          </a>
-          
-          <div className="mt-4 space-y-1">
-            <p className="font-body-md text-on-surface-variant">Phone: <a href="tel:09166416172" className="hover:text-primary transition-colors">0916 641 6172</a></p>
-            <p className="font-body-md text-on-surface-variant">Email: <a href="mailto:renovarhaven@gmail.com" className="hover:text-primary transition-colors">renovarhaven@gmail.com</a></p>
-          </div>
         </div>
         
         <div>
-          <h4 className="font-label-caps text-label-caps text-primary mb-6">Business Hours</h4>
+          <h4 className="font-label-caps text-label-caps text-primary mb-6">Quick Links</h4>
           <ul className="space-y-4">
-            <li className="font-body-md text-on-surface-variant">Open Daily</li>
-            <li className="font-body-md text-on-surface-variant">Closes 6:00 PM</li>
+            <li><button onClick={() => handleNavClick('services')} className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Services</button></li>
+            <li><button onClick={() => handleNavClick('packages')} className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Packages</button></li>
+            <li><button onClick={() => handleNavClick('gallery')} className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Gallery</button></li>
+            <li><button onClick={() => handleNavClick('contact')} className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Contact</button></li>
           </ul>
         </div>
         
         <div>
           <h4 className="font-label-caps text-label-caps text-primary mb-6">Connect</h4>
           <ul className="space-y-4">
-            <li><a href="#" className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Instagram: @renovarhavenspa</a></li>
-            <li><a href="#" className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Facebook: Renovar Haven Wellness & Spa</a></li>
+            <li><a href="#" className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Instagram</a></li>
+            <li><a href="#" className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">Facebook</a></li>
             <li><a href="https://wa.me/2349166416172" target="_blank" rel="noopener noreferrer" className="font-body-md text-on-surface-variant hover:text-secondary transition-colors">WhatsApp</a></li>
           </ul>
         </div>

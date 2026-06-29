@@ -247,20 +247,20 @@ export function Reservations() {
                   <Mail className="text-secondary w-5 h-5 flex-shrink-0 mt-1" />
                   <div>
                     <p className="font-bold text-primary mb-1">General Inquiries</p>
-                    <p className="text-on-surface-variant text-sm">hello@renovarhaven.com</p>
-                    <p className="text-on-surface-variant text-sm">+234 (0) 90 200 400</p>
+                    <p className="text-on-surface-variant text-sm">renovarhaven@gmail.com</p>
+                    <p className="text-on-surface-variant text-sm">0916 641 6172</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square relative group">
+            <a href="https://maps.app.goo.gl/WacaMMJdrtj8BZbi8" target="_blank" rel="noopener noreferrer" className="rounded-xl overflow-hidden shadow-sm aspect-square relative group block">
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqJ51iExDOgDTa23FTuJUA5-n1UFPKVRscE_AN0slhVQ8C6Il7FRy8BZ8dhX0_0O4phISC82l5vCg9r0QcmI-ZI6lELLDx1zoBDy9aSKqPi_BmhXEBX4X41XemT3loRXnscIpmGqa11Mo__l7lFGBISmyXijGSqSdWBctsEdILi9RXBecr1HRLEvjrW0xv9e3WA_w5_H3R1VbP0ipwrFIYc-J9mWJO5rLxTX77AkZYLtZccoMhsER_ef6lOkfyUfCDlIQ6ut2sPcY')" }}></div>
               <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-lg flex items-center justify-between cursor-pointer hover:bg-white transition-colors">
                 <span className="text-xs font-label-caps">OPEN IN GOOGLE MAPS</span>
                 <ArrowUpRight className="text-primary w-4 h-4" />
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>

@@ -33,10 +33,6 @@ export function Navbar({ currentView, setCurrentView }: NavbarProps) {
     } else {
       setCurrentView('home');
       setTimeout(() => {
-        if (id === 'contact') {
-          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-          return;
-        }
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });

@@ -28,7 +28,7 @@ export default function App() {
         {currentView === 'reservations' && <Reservations />}
       </div>
 
-      <Footer />
+      <Footer setCurrentView={setCurrentView} />
 
       {/* Floating WhatsApp Action */}
       <a 
