@@ -26,21 +26,15 @@ export default function App() {
         {currentView === 'home' && <Home setCurrentView={setCurrentView} />}
         {currentView === 'services' && <Services setCurrentView={setCurrentView} />}
         {currentView === 'reservations' && <Reservations />}
-        
-        {/* Placeholder for other views requested in navbar but not in mockups */}
-        {(currentView === 'packages' || currentView === 'about' || currentView === 'reviews') && (
-           <div className="py-32 text-center text-on-surface-variant">
-             <h2 className="font-headline-md text-primary mb-4 capitalize">{currentView} Content</h2>
-             <p>This section is under construction.</p>
-           </div>
-        )}
       </div>
 
       <Footer />
 
       {/* Floating WhatsApp Action */}
       <a 
-        href="#"
+        href="https://wa.me/2349166416172"
+        target="_blank"
+        rel="noopener noreferrer"
         className="fixed bottom-8 right-8 z-[60] bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform active:scale-95 group"
       >
         <MessageCircle fill="currentColor" stroke="none" className="w-7 h-7" />

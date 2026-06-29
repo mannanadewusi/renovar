@@ -187,26 +187,32 @@ export function Reservations() {
                     </button>
                     <h2 className="font-headline-sm text-headline-sm text-primary">Final Details</h2>
                   </div>
-                  <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert("Booking complete!"); setStep(1); }}>
+                  <form className="space-y-6" onSubmit={(e) => { 
+                    e.preventDefault(); 
+                    const name = (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value;
+                    const date = "selected date"; // Mock for now since state isn't hooked up to calendar
+                    const text = `Hello Renovar Haven, I would like to book an appointment.\nName: ${name}`;
+                    window.open(`https://wa.me/2349166416172?text=${encodeURIComponent(text)}`, '_blank');
+                  }}>
                     <div className="space-y-2">
                       <label className="font-label-caps text-[10px] text-secondary">FULL NAME</label>
-                      <input type="text" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="Chidi Adeyemi" />
+                      <input name="name" required type="text" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="Chidi Adeyemi" />
                     </div>
                     <div className="space-y-2">
                       <label className="font-label-caps text-[10px] text-secondary">EMAIL ADDRESS</label>
-                      <input type="email" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="chidi@example.com" />
+                      <input name="email" required type="email" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="chidi@example.com" />
                     </div>
                     <div className="space-y-2">
                       <label className="font-label-caps text-[10px] text-secondary">PHONE NUMBER</label>
-                      <input type="tel" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="+234 800 000 0000" />
+                      <input name="phone" required type="tel" className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors" placeholder="+234 800 000 0000" />
                     </div>
                     <div className="space-y-2">
                       <label className="font-label-caps text-[10px] text-secondary">SPECIAL REQUESTS</label>
-                      <textarea rows={2} className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors resize-none" placeholder="Tell us about allergies or preferences..."></textarea>
+                      <textarea name="notes" rows={2} className="w-full bg-transparent border-0 border-b border-primary-container/30 py-2 focus:ring-0 focus:border-secondary outline-none transition-colors resize-none" placeholder="Tell us about allergies or preferences..."></textarea>
                     </div>
                     <div className="pt-8">
-                      <button type="submit" className="w-full bg-primary-container text-white py-4 rounded-full font-label-caps tracking-widest hover:shadow-lg transition-all">
-                        CONFIRM BOOKING
+                      <button type="submit" className="w-full bg-primary-container text-white py-4 rounded-full font-label-caps tracking-widest hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                        BOOK VIA WHATSAPP
                       </button>
                     </div>
                   </form>

@@ -21,9 +21,29 @@ export function Navbar({ currentView, setCurrentView }: NavbarProps) {
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
     { id: 'packages', label: 'Packages' },
-    { id: 'reservations', label: 'Reservations' },
-    { id: 'about', label: 'About' },
+    { id: 'reviews', label: 'Reviews' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'contact', label: 'Contact' },
   ];
+
+  const handleNavClick = (id: string) => {
+    if (['home', 'services', 'reservations'].includes(id)) {
+      setCurrentView(id);
+    } else {
+      setCurrentView('home');
+      setTimeout(() => {
+        if (id === 'contact') {
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+          return;
+        }
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
 
   return (
     <nav
@@ -33,18 +53,18 @@ export function Navbar({ currentView, setCurrentView }: NavbarProps) {
     >
       <div className="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
         <button
-          onClick={() => setCurrentView('home')}
+          onClick={() => handleNavClick('home')}
           className="font-display-lg text-display-lg-mobile md:text-[32px] tracking-tighter text-primary focus:outline-none"
         >
           RENOVAR
         </button>
 
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden md:flex gap-6 lg:gap-8 items-center">
           {navLinks.map((link) => (
             <button
               key={link.id}
-              onClick={() => setCurrentView(link.id)}
-              className={`font-label-caps text-label-caps transition-colors focus:outline-none ${
+              onClick={() => handleNavClick(link.id)}
+              className={`font-label-caps text-[11px] lg:text-label-caps transition-colors focus:outline-none ${
                 currentView === link.id
                   ? 'text-primary border-b border-primary pb-1'
                   : 'text-on-surface-variant hover:text-primary'

@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight, Leaf, BedDouble, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, Leaf, BedDouble, Sparkles, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from 'react';
 
 interface HomeProps {
   setCurrentView: (view: string) => void;
@@ -12,6 +13,12 @@ const revealVariants = {
 };
 
 export function Home({ setCurrentView }: HomeProps) {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   return (
     <main>
       {/* Hero Section */}
@@ -130,7 +137,7 @@ export function Home({ setCurrentView }: HomeProps) {
       </section>
 
       {/* Packages Section */}
-      <section className="py-section-padding px-6 md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-low rounded-3xl mb-section-padding">
+      <section id="packages" className="py-section-padding px-6 md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-low rounded-3xl mb-section-padding">
         <div className="text-center mb-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
             <h2 className="font-headline-md text-headline-md mb-4">Premium Bundles</h2>
@@ -213,8 +220,116 @@ export function Home({ setCurrentView }: HomeProps) {
         </div>
       </section>
 
+      {/* Signature Experience */}
+      <section className="py-section-padding px-6 md:px-margin-desktop bg-primary text-white">
+        <div className="max-w-container-max mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}
+          >
+            <span className="font-label-caps text-label-caps text-secondary block mb-4">SIGNATURE EXPERIENCE</span>
+            <h2 className="font-headline-md text-headline-md mb-8">Disconnect to Reconnect</h2>
+            <p className="font-body-lg text-white/80 mb-6 leading-relaxed">
+              In a world that demands your constant attention, true luxury is the space to simply be. Every detail of your visit to Renovar Haven is intentionally designed to guide you away from the noise of the city and into a state of profound stillness.
+            </p>
+            <p className="font-body-lg text-white/80 mb-10 leading-relaxed">
+              Through the therapeutic power of touch, the calming influence of aromatherapy, and the restorative silence of our private suites, we help you shed the weight of everyday stress and rediscover your natural state of balance.
+            </p>
+            <button 
+              onClick={() => setCurrentView('services')}
+              className="bg-transparent border border-white text-white hover:bg-white hover:text-primary transition-all px-8 py-3 rounded-full font-label-caps text-label-caps"
+            >
+              Explore All Treatments
+            </button>
+          </motion.div>
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: 0.2 }}
+            className="aspect-[3/4] rounded-2xl overflow-hidden"
+          >
+            <img 
+              className="w-full h-full object-cover" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Vq1GqX2R_qVnIqg0v0g6g_b-U_nS6N8Qy3wLq_XvGqO0B2eFq6g_a0Z3Y0D9q6g_FzVz0qK3_ZqK2gL_0nB3Y0Z1_aN_0Z_DqT0D6G_b0P4qX_aP2Vq_2GqK_G2K3Y0nL_aP2qK_vK4B0bL_Gq1eB3_Dq_GqP0_Q_ZqK3_F0N_3a_qL4F0bVqP2_qN_aL_FqO4_qL0_L4_OqZ3_" 
+              alt="Signature spa experience" 
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-section-padding px-6 max-w-container-max mx-auto text-center">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}>
+          <span className="font-label-caps text-label-caps text-secondary block mb-4">THE JOURNEY</span>
+          <h2 className="font-headline-md text-headline-md text-primary mb-16">Three Steps to Serenity</h2>
+        </motion.div>
+        
+        <div className="grid md:grid-cols-3 gap-12 relative">
+          <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-[1px] bg-outline-variant/30 z-0"></div>
+          
+          {[
+            { step: '01', title: 'Choose Treatment', desc: 'Browse our curated menu of luxury massages, facials, and wellness rituals.' },
+            { step: '02', title: 'Book on WhatsApp', desc: 'Connect with our concierge team to reserve your preferred date and time.' },
+            { step: '03', title: 'Relax & Renew', desc: 'Arrive at our Ikeja sanctuary and let our expert therapists take care of the rest.' }
+          ].map((item, i) => (
+            <motion.div 
+              key={i}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: i * 0.2 }}
+              className="relative z-10 flex flex-col items-center"
+            >
+              <div className="w-24 h-24 rounded-full bg-surface-container-low flex items-center justify-center mb-8 border border-outline-variant/20 shadow-sm">
+                <span className="font-display-lg text-[32px] text-primary">{item.step}</span>
+              </div>
+              <h3 className="font-headline-sm text-[24px] text-primary mb-4">{item.title}</h3>
+              <p className="font-body-md text-on-surface-variant max-w-xs">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Google Reviews */}
+      <section id="reviews" className="py-section-padding bg-surface-container-low overflow-hidden">
+        <div className="max-w-container-max mx-auto px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} className="text-center mb-16">
+            <div className="flex justify-center mb-4">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" className="w-8 h-8 mr-3" />
+            </div>
+            <h2 className="font-headline-md text-headline-md text-primary mb-4">Guest Experiences</h2>
+            <div className="flex justify-center items-center gap-2 mb-2">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-[#FBBC04] text-[#FBBC04]" />)}
+            </div>
+            <p className="font-body-md text-on-surface-variant">Rated 4.8/5 from over 156 Google Reviews</p>
+          </motion.div>
+
+          <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar">
+            {[
+              { name: 'Jelilat Kareem', text: '"I visited Renovar with my partner for a pedicure and Swedish massage session. I left with incredibly soft feet and my body felt completely refreshed. The experience was relaxing from start to finish."' },
+              { name: 'Ginika Blessing', text: '"The experience was generally very good. The masseuse and pedicurist were professional, welcoming, and excellent at what they do. I truly enjoyed every moment."' },
+              { name: 'Ayomide Owoeye', text: '"I finally treated myself to a full spa day and it exceeded every expectation. The massage was deeply relaxing while the facial left my skin glowing. Everything felt luxurious."' }
+            ].map((review, i) => (
+              <motion.div 
+                key={i}
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: i * 0.2 }}
+                className="snap-center min-w-[300px] md:min-w-[400px] bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-headline-sm">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-body-lg font-medium text-primary">{review.name}</h4>
+                    <p className="text-sm text-on-surface-variant">a month ago</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-[#FBBC04] text-[#FBBC04]" />)}
+                </div>
+                <p className="font-body-md text-on-surface-variant italic">{review.text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Gallery Section */}
-      <section className="py-section-padding">
+      <section id="gallery" className="py-section-padding">
         <div className="text-center mb-16 px-6">
           <h2 className="font-headline-md text-headline-md mb-2">Our Ambience</h2>
           <p className="font-label-caps text-label-caps text-on-surface-variant">A GLIMPSE INTO SERENITY</p>
@@ -240,6 +355,83 @@ export function Home({ setCurrentView }: HomeProps) {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-section-padding px-6 md:px-margin-desktop max-w-[800px] mx-auto">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} className="text-center mb-12">
+          <span className="font-label-caps text-label-caps text-secondary block mb-4">COMMON INQUIRIES</span>
+          <h2 className="font-headline-md text-headline-md text-primary">Frequently Asked Questions</h2>
+        </motion.div>
+
+        <div className="space-y-4">
+          {[
+            { q: 'Do I need an appointment?', a: 'Yes, we recommend booking in advance to ensure availability, especially on weekends. You can easily request a booking via WhatsApp.' },
+            { q: 'Can couples book together?', a: 'Absolutely. We offer dedicated Couples Haven Journeys and have private dual-treatment rooms available upon request.' },
+            { q: 'How long are treatments?', a: 'Treatments range from 60 minutes for targeted therapies up to 5 hours for our premium rejuvenation packages.' },
+            { q: 'What payment methods are accepted?', a: 'We accept bank transfers, POS payments with all major debit/credit cards, and cash.' },
+            { q: 'Can I reschedule?', a: 'Yes, we kindly ask for a minimum of 24 hours notice for any rescheduling or cancellations.' }
+          ].map((faq, i) => (
+            <motion.div 
+              key={i}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: i * 0.1 }}
+              className="border border-outline-variant/20 rounded-xl overflow-hidden bg-white"
+            >
+              <button 
+                onClick={() => toggleFaq(i)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+              >
+                <span className="font-headline-sm text-[18px] text-primary">{faq.q}</span>
+                {openFaq === i ? <ChevronUp className="text-secondary w-5 h-5 flex-shrink-0" /> : <ChevronDown className="text-secondary w-5 h-5 flex-shrink-0" />}
+              </button>
+              <AnimatePresence>
+                {openFaq === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="px-6 pb-5 font-body-md text-on-surface-variant">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary z-0">
+          <div className="absolute inset-0 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpKqu9VjC8JjZH-Fyu6V1mIliKOWai3m4dbzPrhMRCSnG_xSsDWtZ0kiKpGRhOHk2mvhXQUriHMQ-7wh8zdwvSFvkjUK35CL-kBQkzGUdIszh-uyEZfZxkiixHwGEVQzQ22PkUB-GKj64iliZf5-xUSvRpxmfcBl3xl7kdXAqhMNqBF8EMqj6lJcgC5Iyot_IhEvfxlGVYTEedW43fNSFdWVAQwb4BH6r2OqlQY1K6WhYpcC1UbcmC67hr1javlqRsnItmFX_jWQE')] opacity-20 mix-blend-overlay bg-cover bg-center"></div>
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto text-center text-white">
+          <motion.h2 
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants}
+            className="font-headline-md text-headline-md lg:text-[64px] mb-6 leading-tight"
+          >
+            You Deserve Time to Recharge
+          </motion.h2>
+          <motion.p 
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: 0.1 }}
+            className="font-body-lg text-white/80 mb-10 max-w-xl mx-auto"
+          >
+            Book your next wellness experience today and let our team help you relax, recharge, and renew.
+          </motion.p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={revealVariants} transition={{ delay: 0.2 }}>
+            <button 
+              onClick={() => setCurrentView('reservations')}
+              className="bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container transition-all px-8 py-4 rounded-full font-label-caps text-label-caps shadow-lg hover:shadow-xl inline-flex items-center gap-2 group"
+            >
+              Book on WhatsApp
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
     </main>
   );
 }
